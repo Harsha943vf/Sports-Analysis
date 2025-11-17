@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Team vs Team Prediction</h1>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <form id="tossPredictionForm" class="mb-4">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="team1" class="form-label">Team 1</label>
+                        <select class="form-select" id="team1" required>
+                            <option value="" selected disabled>Choose a team...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <label for="team2" class="form-label">Team 2</label>
+                        <select class="form-select" id="team2" required>
+                            <option value="" selected disabled>Choose a team...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <label for="venue" class="form-label">Venue</label>
+                        <select class="form-select" id="venue" required>
+                            <option value="" selected disabled>Select both teams first...</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary">Predict Match Outcome</button>
+                </div>
+            </form>
+
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div class="prediction-card">
+                        <h3 class="text-primary">Win Probability</h3>
+                        <div id="winProbability" class="prediction-content"></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="prediction-card">
+                        <h3 class="text-primary">Expected Score Range</h3>
+                        <div id="scoreRange" class="prediction-content"></div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="prediction-card">
+                        <h3 class="text-primary">Key Players</h3>
+                        <div id="keyPlayers" class="prediction-content"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.prediction-card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    height: 100%;
+}
+
+.prediction-card h3 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    color: #007bff;
+}
+
+.prediction-content {
+    min-height: 100px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    padding: 10px 30px;
+    font-weight: 500;
+}
+
+.form-select {
+    border-radius: 5px;
+    border: 1px solid #dee2e6;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #495057;
+}
+</style>
+
+<script src="{{ url_for('static', filename='js/toss_prediction.js') }}"></script>
+{% endblock %} 

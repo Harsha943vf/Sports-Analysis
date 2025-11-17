@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Player Performance Prediction</h2>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <form id="playerPredictionForm" class="mb-4">
+                <div class="row g-3">
+                    <div class="col-md-3">
+                        <label for="matchTeam1" class="form-label">Team 1</label>
+                        <select class="form-select" id="matchTeam1" required>
+                            <option value="" selected disabled>Choose a team...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <label for="matchTeam2" class="form-label">Team 2</label>
+                        <select class="form-select" id="matchTeam2" required>
+                            <option value="" selected disabled>Choose a team...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-3">
+                        <label for="matchVenue" class="form-label">Venue</label>
+                        <select class="form-select" id="matchVenue" required>
+                            <option value="" selected disabled>Select both teams first...</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label">Select Team for Player</label>
+                        <div class="team-radio-group">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="teamSelection" id="team1Radio" disabled>
+                                <label class="form-check-label" for="team1Radio" id="team1Label">Team 1</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="teamSelection" id="team2Radio" disabled>
+                                <label class="form-check-label" for="team2Radio" id="team2Label">Team 2</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label for="playerSelect" class="form-label">Select Player</label>
+                        <select class="form-select" id="playerSelect" required disabled>
+                            <option value="" selected disabled>Select a team first...</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary">Predict Performance</button>
+                </div>
+            </form>
+
+            <div id="playerPredictionResults" class="mt-4"></div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .prediction-card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        margin-bottom: 2rem;
+    }
+    .form-label {
+        font-weight: 500;
+        color: #2c3e50;
+        margin-bottom: 0.5rem;
+    }
+    .container {
+        max-width: 1200px;
+    }
+    .team-radio-group {
+        display: flex;
+        gap: 20px;
+        padding: 10px 0;
+    }
+    .form-check-input:checked {
+        background-color: #0d6efd;
+        border-color: #0d6efd;
+    }
+    .form-check-label {
+        cursor: pointer;
+    }
+    h2 {
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 2rem;
+        background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+</style>
+
+<script src="{{ url_for('static', filename='js/player_prediction.js') }}"></script>
+{% endblock %}

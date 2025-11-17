@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top 10 Rankings - Cricket Analytics</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <style>
+        body {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            min-height: 100vh;
+        }
+        .container {
+            padding-top: 2rem;
+            padding-bottom: 2rem;
+        }
+        .rankings-section {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .rankings-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        .section-title {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        .main-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        .modal-content {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+            border: none;
+            border-radius: 15px;
+        }
+        .modal-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a252f 100%);
+            color: white;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            border-bottom: none;
+        }
+        .modal-title {
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .btn-close {
+            filter: brightness(0) invert(1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="main-title">Top 10 Rankings</h1>
+        
+        <div class="rankings-section">
+            <h3 class="section-title">Top 10 Batsmen</h3>
+            <div class="table-responsive">
+                <table class="table rankings-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Team</th>
+                            <th>Matches</th>
+                            <th>Runs</th>
+                            <th>Average</th>
+                            <th>Strike Rate</th>
+                            <th>Highest Score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="battingRankingsBody"></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="rankings-section">
+            <h3 class="section-title">Top 10 Bowlers</h3>
+            <div class="table-responsive">
+                <table class="table rankings-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Team</th>
+                            <th>Matches</th>
+                            <th>Wickets</th>
+                            <th>Economy</th>
+                            <th>Balls</th>
+                            <th>Runs Conceded</th>
+                        </tr>
+                    </thead>
+                    <tbody id="bowlingRankingsBody"></tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="rankings-section">
+            <h3 class="section-title">Top 10 All-rounders</h3>
+            <div class="table-responsive">
+                <table class="table rankings-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Player</th>
+                            <th>Team</th>
+                            <th>Matches</th>
+                            <th>Runs</th>
+                            <th>Batting Avg</th>
+                            <th>Wickets</th>
+                            <th>Economy</th>
+                            <th>Performance Index</th>
+                        </tr>
+                    </thead>
+                    <tbody id="allrounderRankingsBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="modal fade" id="playerDetailsModal" tabindex="-1">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Player Details</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <canvas id="playerStatsChart"></canvas>
+                            </div>
+                            <div class="col-md-6">
+                                <div id="playerDetailedStats"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='js/rankings.js') }}"></script>
+</body>
+</html>

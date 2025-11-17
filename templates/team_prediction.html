@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Team vs Team Prediction</h2>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <form id="matchPredictionForm" class="mb-4">
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="matchTeam1" class="form-label">Team 1</label>
+                        <select class="form-select" id="matchTeam1" required>
+                            <option value="" selected disabled>Choose a team...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <label for="matchTeam2" class="form-label">Team 2</label>
+                        <select class="form-select" id="matchTeam2" required>
+                            <option value="" selected disabled>Choose a team...</option>
+                        </select>
+                    </div>
+                    
+                    <div class="col-md-4">
+                        <label for="matchVenue" class="form-label">Venue</label>
+                        <select class="form-select" id="matchVenue" required>
+                            <option value="" selected disabled>Select both teams first...</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary">Predict Match Outcome</button>
+                </div>
+            </form>
+
+            <div id="matchPredictionResults" class="mt-4"></div>
+        </div>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/team_prediction.js') }}"></script>
+{% endblock %}
